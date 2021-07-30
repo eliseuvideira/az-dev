@@ -3,5 +3,21 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@ev-fns/dotenv": "^1.0.1",
+    "knex": "^0.95.8",
+    "mongodb": "^4.0.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "mongo-migrate": "^2.0.2"
+  },
+  "scripts": {
+    "migrate-down": "knex --knexfile ./database/knexfile.js migrate:down",
+    "migrate-latest": "knex --knexfile ./database/knexfile.js migrate:latest",
+    "migrate-make": "knex --knexfile ./database/knexfile.js migrate:make",
+    "migrate-rollback": "knex --knexfile ./database/knexfile.js migrate:rollback",
+    "migrate-up": "knex --knexfile ./database/knexfile.js migrate:up"
+  }
 }
