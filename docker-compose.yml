@@ -19,5 +19,18 @@ services:
       - postgres_volume:/var/lib/postgresql/data
     command: -p $POSTGRES_PORT
 
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    ports:
+      - $MONGODB_PORT:$MONGODB_PORT
+    restart: always
+    volumes:
+      - mongo_volume:/data/db
+    command: mongod --port $MONGODB_PORT
+
 volumes:
+  mongo_volume:
   postgres_volume:
