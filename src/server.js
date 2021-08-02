@@ -1,4 +1,5 @@
 const { graphqlHTTP } = require("express-graphql");
+const { makeExecutableSchema } = require("@graphql-tools/schema");
 
 const express = require("express");
 const cors = require("cors");
@@ -18,7 +19,10 @@ const typeDefs = require("./typeDefs");
 
   app.use(
     "/",
-    graphqlHTTP({ schema: typeDefs, rootValue: resolvers, graphiql: true })
+    graphqlHTTP({
+      schema: makeExecutableSchema({ typeDefs, resolvers }),
+      graphiql: true,
+    })
   );
 
   app.listen(3000, () => {

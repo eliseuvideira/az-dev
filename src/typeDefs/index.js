@@ -4,4 +4,8 @@ module.exports = buildSchema(`
   type Query {
     currentTime: String!
   }
+
+  schema {
+    query: Query
+  }
 `);

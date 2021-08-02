@@ -1,5 +1,7 @@
 module.exports = {
-  currentTime: () => {
-    return new Date().toISOString().slice(11, 19);
+  Query: {
+    currentTime: () => {
+      return new Date().toISOString().slice(11, 19);
+    },
   },
 };
