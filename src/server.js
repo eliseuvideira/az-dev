@@ -1,13 +1,10 @@
 const { graphqlHTTP } = require("express-graphql");
-const { makeExecutableSchema } = require("@graphql-tools/schema");
 
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { json, urlencoded } = require("body-parser");
 
-const resolvers = require("./resolvers");
-const typeDefs = require("./typeDefs");
 const schema = require("./schema");
 
 (async () => {
