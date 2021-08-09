@@ -8,6 +8,7 @@ const { json, urlencoded } = require("body-parser");
 
 const resolvers = require("./resolvers");
 const typeDefs = require("./typeDefs");
+const schema = require("./schema");
 
 (async () => {
   const app = express();
@@ -20,7 +21,7 @@ const typeDefs = require("./typeDefs");
   app.use(
     "/",
     graphqlHTTP({
-      schema: makeExecutableSchema({ typeDefs, resolvers }),
+      schema: schema,
       graphiql: true,
     })
   );
