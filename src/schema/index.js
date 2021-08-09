@@ -4,6 +4,7 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLNonNull,
+  printSchema,
 } = require("graphql");
 const { RangeType, range } = require("./types/range");
 
@@ -30,5 +31,7 @@ const QueryType = new GraphQLObjectType({
 const schema = new GraphQLSchema({
   query: QueryType,
 });
+
+console.info(printSchema(schema));
 
 module.exports = schema;
