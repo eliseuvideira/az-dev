@@ -6,7 +6,7 @@ const {
   GraphQLNonNull,
   printSchema,
 } = require("graphql");
-const { RangeType, range } = require("./types/range");
+const { RangeType, range } = require("./types/Range");
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
