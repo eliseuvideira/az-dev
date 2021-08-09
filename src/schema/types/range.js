@@ -3,6 +3,7 @@ const {
   GraphQLNonNull,
   GraphQLList,
   GraphQLInt,
+  GraphQLFloat,
 } = require("graphql");
 
 const RangeType = new GraphQLObjectType({
@@ -18,6 +19,9 @@ const RangeType = new GraphQLObjectType({
     count: {
       type: new GraphQLNonNull(GraphQLInt),
     },
+    average: {
+      type: new GraphQLNonNull(GraphQLFloat),
+    },
   },
 });
 
@@ -32,6 +36,7 @@ const range = (source, { begin, end }) => {
     values: items,
     sum: items.reduce((x, y) => x + y, 0),
     count: items.length,
+    average: items.length ? items.reduce((x, y) => x + y, 0) / items.length : 0,
   };
 };
 
