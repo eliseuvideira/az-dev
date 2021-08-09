@@ -27,7 +27,9 @@ const RangeType = new GraphQLObjectType({
 
 const range = (source, { begin, end }) => {
   if (begin > end) {
-    return { values: [], sum: 0, count: 0 };
+    throw new Error(
+      `Invalid range, "begin" should be less than or equal to "end", provided "begin" (${begin}) is greater than "end" (${end})`
+    );
   }
 
   const items = new Array(end - begin).fill(null).map((_, i) => i + begin);
