@@ -37,10 +37,8 @@ const TaskType = new GraphQLObjectType({
     },
     author: {
       type: UserType,
-      resolve: async (task) => {
-        const user = await UserModel.findOne(database, {
-          user_id: task.user_id,
-        });
+      resolve: async (task, args, { loaders }) => {
+        const user = loaders.User.load(task.user_id);
 
         return user;
       },

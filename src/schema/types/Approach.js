@@ -24,10 +24,8 @@ const ApproachType = new GraphQLObjectType({
     },
     author: {
       type: new GraphQLNonNull(UserType),
-      resolve: async (approach) => {
-        const user = await UserModel.findOne(database, {
-          user_id: approach.user_id,
-        });
+      resolve: async (approach, args, { loaders }) => {
+        const user = loaders.User.load(approach.user_id);
 
         return user;
       },
