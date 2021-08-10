@@ -11,6 +11,8 @@ const { DateTimeType } = require("./DateTime");
 const TaskModel = require("../../models/Task");
 const { UserType } = require("./User");
 const UserModel = require("../../models/User");
+const { ApproachType } = require("./Approach");
+const ApproachModel = require("../../models/Approach");
 
 const TaskType = new GraphQLObjectType({
   name: "Task",
@@ -41,6 +43,18 @@ const TaskType = new GraphQLObjectType({
         });
 
         return user;
+      },
+    },
+    approaches: {
+      type: new GraphQLNonNull(
+        new GraphQLList(new GraphQLNonNull(ApproachType))
+      ),
+      resolve: async (task) => {
+        const task_id = task.task_id;
+
+        const approaches = await ApproachModel.find(database, { task_id });
+
+        return approaches;
       },
     },
   },
