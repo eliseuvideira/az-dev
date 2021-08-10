@@ -68,7 +68,7 @@ const ApproachModel = require("./models/Approach");
       schema: schema,
       graphiql: true,
       context: { loaders },
-      formatError: (err) => {
+      customFormatErrorFn: (err) => {
         console.error(err);
 
         return err;
