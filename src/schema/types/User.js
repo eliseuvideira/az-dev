@@ -4,6 +4,8 @@ const {
   GraphQLString,
   GraphQLID,
 } = require("graphql");
+const UserModel = require("../../models/User");
+const database = require("../../utils/database");
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -27,4 +29,10 @@ const UserType = new GraphQLObjectType({
   },
 });
 
-module.exports = { UserType };
+const users = async () => {
+  const users = await UserModel.find(database);
+
+  return users;
+};
+
+module.exports = { UserType, users };

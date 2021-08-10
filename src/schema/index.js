@@ -8,6 +8,7 @@ const {
   GraphQLList,
 } = require("graphql");
 const { TaskType, tasks } = require("./types/Task");
+const { UserType, users } = require("./types/User");
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -15,6 +16,10 @@ const QueryType = new GraphQLObjectType({
     tasks: {
       type: new GraphQLList(new GraphQLNonNull(TaskType)),
       resolve: tasks,
+    },
+    users: {
+      type: new GraphQLList(new GraphQLNonNull(UserType)),
+      resolve: users,
     },
   },
 });

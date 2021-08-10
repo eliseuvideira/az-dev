@@ -46,6 +46,10 @@ const TaskType = new GraphQLObjectType({
   },
 });
 
-const tasks = () => TaskModel.find(database, { is_private: false });
+const tasks = async () => {
+  const tasks = TaskModel.find(database, { is_private: false });
+
+  return tasks;
+};
 
 module.exports = { TaskType, tasks };
