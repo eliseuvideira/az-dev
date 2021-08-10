@@ -5,25 +5,16 @@ const {
   GraphQLInt,
   GraphQLNonNull,
   printSchema,
+  GraphQLList,
 } = require("graphql");
-const { RangeType, range } = require("./types/Range");
+const { TaskType, tasks } = require("./types/Task");
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
   fields: {
-    currentTime: {
-      type: GraphQLString,
-      resolve: () => {
-        return new Date().toISOString().slice(11, 19);
-      },
-    },
-    range: {
-      type: RangeType,
-      args: {
-        begin: { type: new GraphQLNonNull(GraphQLInt) },
-        end: { type: new GraphQLNonNull(GraphQLInt) },
-      },
-      resolve: range,
+    tasks: {
+      type: new GraphQLList(new GraphQLNonNull(TaskType)),
+      resolve: tasks,
     },
   },
 });
