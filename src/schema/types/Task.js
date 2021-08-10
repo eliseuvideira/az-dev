@@ -38,7 +38,7 @@ const TaskType = new GraphQLObjectType({
     author: {
       type: UserType,
       resolve: async (task, args, { loaders }) => {
-        const user = loaders.User.load(task.user_id);
+        const user = loaders.User.user_id.load(task.user_id);
 
         return user;
       },
@@ -47,10 +47,8 @@ const TaskType = new GraphQLObjectType({
       type: new GraphQLNonNull(
         new GraphQLList(new GraphQLNonNull(ApproachType))
       ),
-      resolve: async (task) => {
-        const task_id = task.task_id;
-
-        const approaches = await ApproachModel.find(database, { task_id });
+      resolve: async (task, args, { loaders }) => {
+        const approaches = loaders.Approach.task_id.load(task.task_id);
 
         return approaches;
       },

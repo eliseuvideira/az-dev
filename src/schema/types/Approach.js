@@ -25,7 +25,7 @@ const ApproachType = new GraphQLObjectType({
     author: {
       type: new GraphQLNonNull(UserType),
       resolve: async (approach, args, { loaders }) => {
-        const user = loaders.User.load(approach.user_id);
+        const user = loaders.User.user_id.load(approach.user_id);
 
         return user;
       },
