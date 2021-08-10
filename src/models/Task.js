@@ -3,6 +3,7 @@ const { Knex } = require("knex");
 const TaskModel = {
   /**
    * @param {Knex} database
+   * @param {Record<string, any>} where
    * @returns {Promise<Record<string, any>[]>}
    */
   find: async (database, where = {}) => {

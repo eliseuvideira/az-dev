@@ -9,6 +9,8 @@ const {
 const database = require("../../utils/database");
 const { DateTimeType } = require("./DateTime");
 const TaskModel = require("../../models/Task");
+const { UserType } = require("./User");
+const UserModel = require("../../models/User");
 
 const TaskType = new GraphQLObjectType({
   name: "Task",
@@ -30,6 +32,16 @@ const TaskType = new GraphQLObjectType({
     },
     created_at: {
       type: new GraphQLNonNull(DateTimeType),
+    },
+    author: {
+      type: UserType,
+      resolve: async (task) => {
+        const user = await UserModel.findOne(database, {
+          user_id: task.user_id,
+        });
+
+        return user;
+      },
     },
   },
 });
