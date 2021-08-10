@@ -18,13 +18,8 @@ const UserType = new GraphQLObjectType({
     },
     name: {
       type: GraphQLString,
-      resolve: (user) => {
-        if (!user.first_name || !user.last_name) {
-          return null;
-        }
-
-        return user.first_name + " " + user.last_name;
-      },
+      resolve: ({ first_name, last_name }) =>
+        first_name && last_name ? [first_name, last_name].join(" ") : null,
     },
   },
 });
