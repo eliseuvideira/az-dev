@@ -34,6 +34,6 @@ const TaskType = new GraphQLObjectType({
   },
 });
 
-const tasks = () => TaskModel.find(database);
+const tasks = () => TaskModel.find(database, { is_private: false });
 
 module.exports = { TaskType, tasks };

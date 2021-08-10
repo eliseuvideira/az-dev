@@ -5,10 +5,10 @@ const TaskModel = {
    * @param {Knex} database
    * @returns {Promise<Record<string, any>[]>}
    */
-  find: async (database) => {
+  find: async (database, where = {}) => {
     const rows = await database
       .from("azdev.tasks")
-      .where({ is_private: false })
+      .where(where)
       .orderBy("created_at", "desc");
 
     return rows;
