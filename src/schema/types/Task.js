@@ -8,6 +8,7 @@ const {
 } = require("graphql");
 const database = require("../../utils/database");
 const { DateTimeType } = require("./DateTime");
+const TaskModel = require("../../models/Task");
 
 const TaskType = new GraphQLObjectType({
   name: "Task",
@@ -33,13 +34,6 @@ const TaskType = new GraphQLObjectType({
   },
 });
 
-const tasks = async () => {
-  const rows = await database
-    .from("azdev.tasks")
-    .where({ is_private: false })
-    .orderBy("created_at", "desc");
-
-  return rows;
-};
+const tasks = () => TaskModel.find(database);
 
 module.exports = { TaskType, tasks };
