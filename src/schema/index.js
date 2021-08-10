@@ -14,11 +14,11 @@ const QueryType = new GraphQLObjectType({
   name: "Query",
   fields: {
     tasks: {
-      type: new GraphQLList(new GraphQLNonNull(TaskType)),
+      type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(TaskType))),
       resolve: tasks,
     },
     users: {
-      type: new GraphQLList(new GraphQLNonNull(UserType)),
+      type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(UserType))),
       resolve: users,
     },
   },
