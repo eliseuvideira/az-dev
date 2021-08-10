@@ -10,7 +10,7 @@ const ApproachModel = {
     const rows = await database
       .from("azdev.approaches")
       .where(where)
-      .orderBy("created_at", "desc");
+      .orderBy("vote_count", "desc");
 
     return rows;
   },
